@@ -1,0 +1,43 @@
+/*main section(메인 내용)*/
+section{
+	text-align: center;
+}
+p{
+		font-size: 25px;
+		font-weight: 550;
+}
+section table{
+	border: solid 3px #F2F2F2;
+	border-collapse: collapse;
+	padding: 0px;
+}
+section table{
+	width: 100%;
+}
+section tr{
+	border: solid 3px #F2F2F2;
+	padding: 0px;
+}
+section td{
+	padding: 5px;
+}
+.table_A{
+	background: #F2F2F2;
+}
+
+.article_1 p{
+	text-align: center;
+}
+.article_1{
+	float: left;
+	width: 68%;
+	background: #F2F2F2;
+}
+.article_1 a{
+	float: left;
+}
+.article_2{
+	float: right;
+	width: 28%;
+	background: #F2F2F2;
+}
