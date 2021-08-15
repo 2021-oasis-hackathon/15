@@ -45,6 +45,24 @@ public class LandServiceApi {
 
     @RequestMapping(method = RequestMethod.POST, value = "/land/save")
     public Land SaveLand(@RequestBody Land land) {
-        return land;
+        return landService.join(land);
     }
+
+//    {
+//            "address":"",
+//            "area_size":,
+//            "money":,
+//            "crops":"",
+//            "type":"",
+//            "tractor":"",
+//            "rice_planting":"",
+//            "fluid_fertilizer":"",
+//            "combine":"",
+//            "tree_crush":"",
+//            "picture":["","",""],
+//        "x":,
+//            "y":
+//    }
+
+
 }

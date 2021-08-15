@@ -33,9 +33,9 @@ public class LandServiceImpl implements LandService {
     }
 
     @Override
-    public Long join(Land land) {
+    public Land join(Land land) {
         landRepository.saveCoordinate(landRepository.savePicuture(landRepository.saveLand(land)));
-        return land.getId();
+        return land;
     }
 
     @Override
