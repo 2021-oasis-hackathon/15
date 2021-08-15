@@ -1,12 +1,7 @@
 package hackathon.core.service;
 
-import hackathon.core.domain.Booking;
-import hackathon.core.domain.BookingForm;
-import hackathon.core.domain.Land;
-import hackathon.core.domain.LandForm;
+import hackathon.core.domain.*;
 
-import java.awt.print.Book;
-import java.util.Date;
 import java.util.List;
 
 public interface LandService {
@@ -28,4 +23,8 @@ public interface LandService {
 
     // id(예약번호)로 예약 검색
     Booking findDateById(long id);
+
+    List<Notice> findNotice();
+
+    News findNews();
 }

@@ -8,6 +8,15 @@ public class BookingForm {
     private long land_id;
     private String booking_date;
     private String booking_time;
+    private String phone;
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
     public long getLand_id() {
         return land_id;

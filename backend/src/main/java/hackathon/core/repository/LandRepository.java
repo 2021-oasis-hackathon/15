@@ -1,9 +1,6 @@
 package hackathon.core.repository;
 
-import hackathon.core.domain.Booking;
-import hackathon.core.domain.BookingForm;
-import hackathon.core.domain.Coordinates;
-import hackathon.core.domain.Land;
+import hackathon.core.domain.*;
 import org.springframework.stereotype.Repository;
 
 
@@ -13,15 +10,11 @@ import java.util.List;
 public interface LandRepository {
     Land saveLand(Land land);
 
-    Land savePicuture(Land land);
-
     Land saveCoordinate(Land land);
 
     Land findById(long id);
 
     List<Land> findByAddress(String address);
-
-    List<String> findPictureById(Long land_id);
 
     List<Land> findAll();
 
@@ -30,4 +23,8 @@ public interface LandRepository {
     Booking saveDate(Booking book, long land_id);
 
     Booking findDate(long id);
+
+    List<Notice> findNotice();
+
+    News findNews();
 }

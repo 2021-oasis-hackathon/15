@@ -1,0 +1,324 @@
+회원가입		
+아이디 중복이면 "아이디중복" 출력
+아이디 중복아니면 "회원가입완료" 출력
+
+http://localhost:8080/login/save
+http://54.180.1.215:8080/login/save
+
+post 로 보낼 것
+
+loginId 		// 아이디		String
+name 		// 회원 이름	String
+passsword	// 비밀번호	String
+phone		// 전화번호	String
+ 
+입력 예)
+{
+  "loginId":"cjswltjr11",
+  "name":"천지석",
+  "password":"1234",
+  "phone":"01077913739"
+}
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+로그인
+
+http://localhost:8080/login
+http://54.180.1.215:8080/login
+
+post 로 보낼 것
+
+
+loginId 		// 아이디		String
+name 		// 회원 이름	String
+passsword	// 비밀번호	String
+phone		// 전화번호	String
+
+입력 예)
+{
+  "loginId":"cjswltjr11",
+  "password":"1234"
+}
+
+
+반환 예)
+{
+"loginId": "cjswltjr11",
+"name": "천지석",
+"password": "1234",
+"phone": "01077913739"
+}
+
+로그인 실패 시 반환 없음
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+검색할 때 농기계 없어서 보유하지 않으면 반환되지 않음
+
+id;               	// id
+address;         	// 주소
+area_size;          	// 면적, 평수
+money;             	// 연간 리스 비용
+incentive;          	// 인센티브
+crops;           	// 재배 작물
+type;            	// 공부 지목
+tractor;         	// 트랙터
+rice_planting;   	// 이앙기
+fluid_fertilizer;	// 액상비료 살포기
+combine;         	// 콤바인
+tree_crush;      	// 나무 분쇄기
+picture;   	// 사진
+x;               	// x 좌표
+y;               	// y 좌표
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+검색 		
+	
+http://localhost:8080/land/address
+http://54.180.1.215:8080/land/address
+
+get방식으로 
+
+
+address  		// 검색할 지역이름 (중복으로 여러개일경우 ,로 구분해서) 	String
+min_area		// 검색할 최소 면적					Int
+max_area		// 검색할 최대 면적					Int
+min_money	// 검색할 최소 연간 리스 비용			Int
+max_money	// 검색할 최대 연간 리스 비용			Int
+type		// 지목 		(논, 밭, 과수원 중 하나로 검색)	String
+
+
+입력 예)
+http://localhost:8080/land/address?address=나주,익산&min_area=500&max_area=3000&min_money=0&max_money=50000&type=논
+http://54.180.1.215:8080/land/address?address=나주,익산&min_area=500&max_area=3000&min_money=0&max_money=50000&type=논
+
+반환 예)
+[
+{
+"id": 14,
+"address": "전남 나주",
+"area_size": 750,
+"money": 850,
+"incentive": 0,
+"crops": "벼",
+"type": "논",
+"tractor": "트랙터1",
+"rice_planting": "이앙기1",
+"fluid_fertilizer": "액상사료살포기1",
+"combine": "콤바인1",
+"tree_crush": "나무분쇄기1",
+"x": 0.0,
+"y": 0.0
+},
+{
+"id": 15,
+"address": "전북 익산",
+"area_size": 500,
+"money": 500,
+"incentive": 0,
+"crops": "보리",
+"type": "논",
+"tractor": "트랙터2",
+"rice_planting": "이앙기2",
+"fluid_fertilizer": "액상사료살포기2",
+"combine": "콤바인2",
+"x": 0.0,
+"y": 0.0
+}
+]
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+id로 검색해서 하나 반환 (리스트 중 하나 클릭 시 id 이용한 검색)
+http://localhost:8080/land/id
+http://54.180.1.215:8080/land/id
+
+get방식
+
+id 	// 토지 id 값 (DB에 있는 id 값으로 검색 후 리스트를 보여줄 때 id 값도 같이 넘겨줘서 클릭 후 
+		상세 페이지로 넘어갈 때 id를 이용한 검색으로 생각)
+
+입력 예)
+http://localhost:8080/land/id?id=45
+http://54.180.1.215:8080/land/id?id=2
+반환 예)
+{
+"id": 45,
+"address": "전북 익산",
+"area_size": 800,
+"money": 1200,
+"incentive": 10,
+"crops": "옥수수",
+"type": "밭",
+"tractor": "트랙터1234",
+"fluid_fertilizer": "액상사료살포기11441",
+"tree_crush": "나무분쇄기10",
+"x": 35.442314,
+"y": 32.24123
+}
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+모든 토지 반환
+
+http://localhost:8080/land
+http://54.180.1.215:8080/land
+get 방식
+
+반환 예)
+[
+{
+"id": 1,
+"address": "전남 여수",
+"area_size": 400,
+"money": 700,
+"incentive": 0,
+"crops": "벼",
+"type": "논",
+"tractor": "트랙터10",
+"rice_planting": "이앙기32",
+"fluid_fertilizer": "액상사료살포기11",
+"combine": "콤바인3",
+"tree_crush": "나무분쇄기10",
+"picture": "",
+"x": 32.4412314,
+"y": 33.2414123
+},
+{
+"id": 2,
+"address": "전북 익산",
+"area_size": 800,
+"money": 1200,
+"incentive": 0,
+"crops": "옥수수",
+"type": "밭",
+"tractor": "트랙터1234",
+"fluid_fertilizer": "액상사료살포기11441",
+"tree_crush": "나무분쇄기10",
+"picture": "사진파일이름",
+"x": 35.442314,
+"y": 32.24123
+}
+]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+예약 번호로 예약내역 검색
+http://localhost:8080/date
+http://54.180.1.215:8080/date
+get 방식
+
+id 	// 예약 번호	Int
+
+입력 예)
+http://localhost:8080/date?id=23
+http://54.180.1.215:8080/date?id=2
+반환 예)
+{
+"id": 23,
+"land_id": 0,
+"booking_datetime": "2021-02-05T14:11:22.000+00:00",
+"current_datetime": "2021-08-15T13:18:48.000+00:00",
+"phone": "01077913739"
+}
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+토지 거래 예약
+http://localhost:8080/date/save
+http://54.180.1.215:8080/date/save
+post 방식
+
+land_id		// 토지 id			Int
+booking_date	// 예약 날짜 (yyyy-MM-dd)	String
+booking_time	// 예약 시간 (hh:mm:ss)	String
+phone		// 전화번호		String
+
+입력 예)
+{
+  "land_id":"1",
+  "booking_date":"2021-8-15",
+  "booking_time":"11:22:33",
+  "phone":"01077913739"
+}
+
+반환 예)
+{
+"id": 24,
+"land_id": 1,
+"booking_datetime": "2021-08-01T02:22:33.000+00:00",
+"current_datetime": "2021-08-15T14:09:50.638+00:00",
+"phone": "01077913739"
+}
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+공지사항 출력
+http://localhost:8080/notice
+http://54.180.1.215:8080/notice
+get방식
+
+category		// 공지사항 카테고리 (예) 공지, 행사, 안내???	String
+title		// 글 제목				String
+date		// 작성 날짜				String
+
+반환 예)
+[
+{
+"category": "공지",
+"title": "제목1",
+"date": "2021년 8월 15일"
+},
+{
+"category": "공지",
+"title": "제목2",
+"date": "2021년 8월 16일"
+},
+{
+"category": "행사",
+"title": "제목3",
+"date": "2021년 8월 16일"
+},
+{
+"category": "공지",
+"title": "제목4",
+"date": "2021년 8월 17일"
+}
+]
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+뉴스 출력
+
+http://localhost:8080/news
+http://54.180.1.215:8080/news
+
+get방식
+
+title 		// 뉴스 제목				String
+text		// 뉴스 내용				String
+date		// 작성 날짜				String
+
+반환 예)
+{
+"title": "뉴스 제목",
+"text": "뉴스 내용",
+"date": "2021년 08월 15일"
+}
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

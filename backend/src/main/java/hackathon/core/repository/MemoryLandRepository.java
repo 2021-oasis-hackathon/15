@@ -1,9 +1,6 @@
 package hackathon.core.repository;
 
-import hackathon.core.domain.Booking;
-import hackathon.core.domain.BookingForm;
-import hackathon.core.domain.Coordinates;
-import hackathon.core.domain.Land;
+import hackathon.core.domain.*;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.stereotype.Component;
 
@@ -25,11 +22,10 @@ public class MemoryLandRepository implements LandRepository {
         this.dataSource = dataSource;
     }
 
-
     @Override
     public Land saveLand(Land land) {
 
-        String sql = "insert into land(address, area_size, money, crops, type, tractor, rice_planting, fluid_fertilizer, combine, tree_crush) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "insert into land(address, area_size, money, crops, type, tractor, rice_planting, fluid_fertilizer, combine, tree_crush, picture, incentive) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)";
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -48,7 +44,8 @@ public class MemoryLandRepository implements LandRepository {
             pstmt.setString(8, land.getFluid_fertilizer());
             pstmt.setString(9, land.getCombine());
             pstmt.setString(10, land.getTree_crush());
-
+            pstmt.setString(11, land.getPicture());
+            pstmt.setInt(12, land.getIncentive());
             pstmt.executeUpdate();
 
             rs = pstmt.getGeneratedKeys();
@@ -68,35 +65,6 @@ public class MemoryLandRepository implements LandRepository {
         }
     }
 
-    @Override
-    public Land savePicuture(Land land) {
-
-        String sql = "insert into picture(land_id, name) values(?, ?)";
-        Connection conn = null;
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
-
-        try {
-            conn = getConnection();
-            pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-
-            for (String picture : land.getPicture()) {
-                pstmt.setLong(1, land.getId());
-                pstmt.setString(2, picture);
-
-                pstmt.executeUpdate();
-
-                rs = pstmt.getGeneratedKeys();
-
-            }
-            return land;
-
-        } catch (Exception e) {
-            throw new IllegalStateException(e);
-        } finally {
-            close(conn, pstmt, rs);
-        }
-    }
 
     @Override
     public Land saveCoordinate(Land land) {
@@ -155,7 +123,7 @@ public class MemoryLandRepository implements LandRepository {
                 land.setFluid_fertilizer(rs.getString("fluid_fertilizer"));
                 land.setCombine(rs.getString("combine"));
                 land.setTree_crush(rs.getString("tree_crush"));
-
+                land.setIncentive(rs.getInt("incentive"));
             }
 
             return land;
@@ -191,12 +159,12 @@ public class MemoryLandRepository implements LandRepository {
                 land.setMoney(rs.getLong("money"));
                 land.setCrops(rs.getString("crops"));
                 land.setType(rs.getString("type"));
-//                land.setTractor(rs.getString("tractor"));
-//                land.setRice_planting(rs.getString("rice_planting"));
-//                land.setFluid_fertilizer(rs.getString("fluid_fertilizer"));
-//                land.setCombine(rs.getString("combine"));
-//                land.setTree_crush(rs.getString("tree_crush"));
-
+                land.setPicture(rs.getString("picture"));
+                land.setTractor(rs.getString("tractor"));
+                land.setRice_planting(rs.getString("rice_planting"));
+                land.setFluid_fertilizer(rs.getString("fluid_fertilizer"));
+                land.setCombine(rs.getString("combine"));
+                land.setTree_crush(rs.getString("tree_crush"));
                 lands.add(land);
             }
             return lands;
@@ -249,34 +217,6 @@ public class MemoryLandRepository implements LandRepository {
 
 
     @Override
-    public List<String> findPictureById(Long land_id) {
-        String sql = "select name from picture where land_id = ?";
-        Connection conn = null;
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
-
-        try {
-            conn = getConnection();
-            pstmt = conn.prepareStatement(sql);
-            pstmt.setLong(1, land_id);
-            rs = pstmt.executeQuery();
-            List<String> pictures = new ArrayList<>();
-            while (rs.next()) {
-                String picture = null;
-                picture = rs.getString("name");
-                pictures.add(picture);
-            }
-
-            return pictures;
-
-        } catch (Exception e) {
-            throw new IllegalStateException(e);
-        } finally {
-            close(conn, pstmt, rs);
-        }
-    }
-
-    @Override
     public Coordinates findCoordinateById(Long land_id) {
         String sql = "select * from coordinates where id = ?";
         Connection conn = null;
@@ -308,7 +248,7 @@ public class MemoryLandRepository implements LandRepository {
 
     @Override
     public Booking saveDate(Booking book, long land_id) {
-        String sql = "insert into booking(`booking_datetime`, `current_datetime`,`land_id`) values(?, ?, ?)";
+        String sql = "insert into booking(`booking_datetime`, `current_datetime`,`land_id`, `phone`) values(?, ?, ?, ?)";
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -337,6 +277,7 @@ public class MemoryLandRepository implements LandRepository {
             pstmt.setTimestamp(1, new Timestamp(bookingDate.getTime()));
             pstmt.setTimestamp(2, new Timestamp(currentDate.getTime()));
             pstmt.setLong(3, land_id);
+            pstmt.setString(4, book.getPhone());
 
             pstmt.executeUpdate();
 
@@ -376,10 +317,72 @@ public class MemoryLandRepository implements LandRepository {
                 book.setBooking_datetime(rs.getTimestamp("booking_datetime"));
                 book.setCurrent_datetime(rs.getTimestamp("current_datetime"));
                 book.setLand_id(rs.getLong("land_id"));
+                book.setPhone(rs.getString("phone"));
                 book.setId(id);
             }
             return book;
 
+        } catch (Exception e) {
+            throw new IllegalStateException(e);
+        } finally {
+            close(conn, pstmt, rs);
+        }
+    }
+
+    @Override
+    public List<Notice> findNotice() {
+        String sql = "select * from notice";
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = getConnection();
+            pstmt = conn.prepareStatement(sql);
+
+            rs = pstmt.executeQuery();
+            List<Notice> notices = new ArrayList<>();
+
+            while (rs.next()) {
+                Notice notice = new Notice();
+
+                notice.setCategory(rs.getString("category"));
+                notice.setTitle(rs.getString("title"));
+                notice.setDate(rs.getString("date"));
+
+                notices.add(notice);
+            }
+            return notices;
+        } catch (Exception e) {
+            throw new IllegalStateException(e);
+        } finally {
+            close(conn, pstmt, rs);
+        }
+    }
+
+    @Override
+    public News findNews() {
+
+        String sql = "select * from news";
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = getConnection();
+            pstmt = conn.prepareStatement(sql);
+
+            rs = pstmt.executeQuery();
+
+            News news = new News();
+
+            if (rs.next()) {
+                news.setTitle(rs.getString("title"));
+                news.setText(rs.getString("text"));
+                news.setDate(rs.getString("date"));
+            }
+
+            return news;
         } catch (Exception e) {
             throw new IllegalStateException(e);
         } finally {

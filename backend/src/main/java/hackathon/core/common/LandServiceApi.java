@@ -1,9 +1,6 @@
 package hackathon.core.common;
 
-import hackathon.core.domain.Booking;
-import hackathon.core.domain.BookingForm;
-import hackathon.core.domain.Land;
-import hackathon.core.domain.LandForm;
+import hackathon.core.domain.*;
 import hackathon.core.service.LandService;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,6 +35,16 @@ public class LandServiceApi {
         return landService.findDateById(id);
     }
 
+    @GetMapping(value = "/notice")
+    public List<Notice> CallNotice() {
+        return landService.findNotice();
+    }
+
+    @GetMapping(value = "/news")
+    public News CallNews() {
+        return landService.findNews();
+    }
+
     @RequestMapping(method = RequestMethod.POST, value = "/date/save")
     public Booking SaveDate(@RequestBody BookingForm form) {
         return landService.saveDate(form);
@@ -47,6 +54,7 @@ public class LandServiceApi {
     public Land SaveLand(@RequestBody Land land) {
         return landService.join(land);
     }
+
 
 //    {
 //            "address":"",
