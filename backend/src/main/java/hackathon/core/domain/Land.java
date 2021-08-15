@@ -22,7 +22,24 @@ public class Land {
     private String combine;         // 콤바인
     private String tree_crush;      // 나무 분쇄기
     private List<String> picture;   // 사진
+    private double x;               // x 좌표
+    private double y;               // y 좌표
 
+    public double getX() {
+        return x;
+    }
+
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public void setY(double y) {
+        this.y = y;
+    }
 
     public List<String> getPicture() {
         return picture;

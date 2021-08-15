@@ -1,5 +1,8 @@
 package hackathon.core.repository;
 
+import hackathon.core.domain.Booking;
+import hackathon.core.domain.BookingForm;
+import hackathon.core.domain.Coordinates;
 import hackathon.core.domain.Land;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.stereotype.Component;
@@ -9,6 +12,7 @@ import java.sql.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -23,7 +27,7 @@ public class MemoryLandRepository implements LandRepository {
 
 
     @Override
-    public Land save(Land land) {
+    public Land saveLand(Land land) {
 
         String sql = "insert into land(address, area_size, money, crops, type, tractor, rice_planting, fluid_fertilizer, combine, tree_crush) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         Connection conn = null;
@@ -54,6 +58,7 @@ public class MemoryLandRepository implements LandRepository {
             } else {
                 throw new SQLException("id 조회 실패");
             }
+
             return land;
 
         } catch (Exception e) {
@@ -62,6 +67,65 @@ public class MemoryLandRepository implements LandRepository {
             close(conn, pstmt, rs);
         }
     }
+
+    @Override
+    public Land savePicuture(Land land) {
+
+        String sql = "insert into picture(land_id, name) values(?, ?)";
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = getConnection();
+            pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+            for (String picture : land.getPicture()) {
+                pstmt.setLong(1, land.getId());
+                pstmt.setString(2, picture);
+
+                pstmt.executeUpdate();
+
+                rs = pstmt.getGeneratedKeys();
+
+            }
+            return land;
+
+        } catch (Exception e) {
+            throw new IllegalStateException(e);
+        } finally {
+            close(conn, pstmt, rs);
+        }
+    }
+
+    @Override
+    public Land saveCoordinate(Land land) {
+
+        String sql = "insert into coordinates(id, x, y) values(?, ?, ?)";
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = getConnection();
+            pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setLong(1, land.getId());
+            pstmt.setDouble(2, land.getX());
+            pstmt.setDouble(3, land.getY());
+
+            pstmt.executeUpdate();
+
+            rs = pstmt.getGeneratedKeys();
+
+            return land;
+
+        } catch (Exception e) {
+            throw new IllegalStateException(e);
+        } finally {
+            close(conn, pstmt, rs);
+        }
+    }
+
 
     @Override
     public Land findById(long id) {
@@ -127,11 +191,11 @@ public class MemoryLandRepository implements LandRepository {
                 land.setMoney(rs.getLong("money"));
                 land.setCrops(rs.getString("crops"));
                 land.setType(rs.getString("type"));
-                land.setTractor(rs.getString("tractor"));
-                land.setRice_planting(rs.getString("rice_planting"));
-                land.setFluid_fertilizer(rs.getString("fluid_fertilizer"));
-                land.setCombine(rs.getString("combine"));
-                land.setTree_crush(rs.getString("tree_crush"));
+//                land.setTractor(rs.getString("tractor"));
+//                land.setRice_planting(rs.getString("rice_planting"));
+//                land.setFluid_fertilizer(rs.getString("fluid_fertilizer"));
+//                land.setCombine(rs.getString("combine"));
+//                land.setTree_crush(rs.getString("tree_crush"));
 
                 lands.add(land);
             }
@@ -184,6 +248,7 @@ public class MemoryLandRepository implements LandRepository {
     }
 
 
+    @Override
     public List<String> findPictureById(Long land_id) {
         String sql = "select name from picture where land_id = ?";
         Connection conn = null;
@@ -203,6 +268,117 @@ public class MemoryLandRepository implements LandRepository {
             }
 
             return pictures;
+
+        } catch (Exception e) {
+            throw new IllegalStateException(e);
+        } finally {
+            close(conn, pstmt, rs);
+        }
+    }
+
+    @Override
+    public Coordinates findCoordinateById(Long land_id) {
+        String sql = "select * from coordinates where id = ?";
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setLong(1, land_id);
+            rs = pstmt.executeQuery();
+
+            Coordinates coor = new Coordinates();
+
+            if (rs.next()) {
+
+                coor.setX(rs.getDouble("x"));
+                coor.setY(rs.getDouble("y"));
+            }
+
+            return coor;
+
+        } catch (Exception e) {
+            throw new IllegalStateException(e);
+        } finally {
+            close(conn, pstmt, rs);
+        }
+    }
+
+    @Override
+    public Booking saveDate(Booking book, long land_id) {
+        String sql = "insert into booking(`booking_datetime`, `current_datetime`,`land_id`) values(?, ?, ?)";
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        Date currentDate = new Date();
+
+
+        book.setCurrent_datetime(currentDate);
+        book.setLand_id(land_id);
+
+        int year = book.getBooking_datetime().getYear() - 1900;
+        int month = book.getBooking_datetime().getMonth();
+        int date = book.getBooking_datetime().getDay();
+        int hrs = book.getBooking_datetime().getHours();
+        int min = book.getBooking_datetime().getMinutes();
+        int sec = book.getBooking_datetime().getSeconds();
+
+        Date bookingDate = new Date(year, month, date, hrs, min, sec);
+
+        book.setBooking_datetime(bookingDate);
+
+        try {
+            conn = getConnection();
+            pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+            pstmt.setTimestamp(1, new Timestamp(bookingDate.getTime()));
+            pstmt.setTimestamp(2, new Timestamp(currentDate.getTime()));
+            pstmt.setLong(3, land_id);
+
+            pstmt.executeUpdate();
+
+            rs = pstmt.getGeneratedKeys();
+
+            if (rs.next()) {
+                book.setId(rs.getLong(1));
+            } else {
+                throw new SQLException("id 조회 실패");
+            }
+
+            return book;
+
+        } catch (Exception e) {
+            throw new IllegalStateException(e);
+        } finally {
+            close(conn, pstmt, rs);
+        }
+    }
+
+    @Override
+    public Booking findDate(long id) {
+        String sql = "select * from booking where id = ?";
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setLong(1, id);
+            rs = pstmt.executeQuery();
+
+            Booking book = new Booking();
+
+            if (rs.next()) {
+                book.setBooking_datetime(rs.getTimestamp("booking_datetime"));
+                book.setCurrent_datetime(rs.getTimestamp("current_datetime"));
+                book.setLand_id(rs.getLong("land_id"));
+                book.setId(id);
+            }
+            return book;
 
         } catch (Exception e) {
             throw new IllegalStateException(e);

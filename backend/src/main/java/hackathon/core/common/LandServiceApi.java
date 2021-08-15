@@ -1,6 +1,7 @@
 package hackathon.core.common;
 
-
+import hackathon.core.domain.Booking;
+import hackathon.core.domain.BookingForm;
 import hackathon.core.domain.Land;
 import hackathon.core.domain.LandForm;
 import hackathon.core.service.LandService;
@@ -30,5 +31,20 @@ public class LandServiceApi {
     @GetMapping(value = "/land")
     public List<Land> CallLandById() {
         return landService.findAll();
+    }
+
+    @GetMapping(value = "/date")
+    public Booking CallDateById(@RequestParam("id") long id) {
+        return landService.findDateById(id);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/date/save")
+    public Booking SaveDate(@RequestBody BookingForm form) {
+        return landService.saveDate(form);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/land/save")
+    public Land SaveLand(@RequestBody Land land) {
+        return land;
     }
 }

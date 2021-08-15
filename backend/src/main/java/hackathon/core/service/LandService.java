@@ -1,8 +1,12 @@
 package hackathon.core.service;
 
+import hackathon.core.domain.Booking;
+import hackathon.core.domain.BookingForm;
 import hackathon.core.domain.Land;
 import hackathon.core.domain.LandForm;
 
+import java.awt.print.Book;
+import java.util.Date;
 import java.util.List;
 
 public interface LandService {
@@ -17,4 +21,8 @@ public interface LandService {
     List<Land> findByAddress(LandForm form);
 
     List<Land> findAll();
+
+    Booking saveDate(BookingForm form);
+
+    Booking findDateById(long id);
 }
