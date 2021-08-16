@@ -4,10 +4,7 @@ import hackathon.core.repository.LandRepository;
 import hackathon.core.repository.MemberRepository;
 import hackathon.core.repository.MemoryMemberRepository;
 import hackathon.core.repository.MemoryLandRepository;
-import hackathon.core.service.LandService;
-import hackathon.core.service.LandServiceImpl;
-import hackathon.core.service.LoginService;
-import hackathon.core.service.LoginServiceImpl;
+import hackathon.core.service.*;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Bean;
 
@@ -29,7 +26,7 @@ public class Config {
 
     @Bean
     public LandService landService() {
-        return new LandServiceImpl(landRepository());
+        return new LandServiceImpl(landRepository(), coordinateConversionService());
     }
 
     @Bean
@@ -40,5 +37,10 @@ public class Config {
     @Bean
     public LoginService loginService(){
         return new LoginServiceImpl(memberRepository());
+    }
+
+    @Bean
+    public CoordinateConversionService coordinateConversionService(){
+        return new CoordinateConversionService();
     }
 }

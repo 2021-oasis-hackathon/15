@@ -11,10 +11,13 @@ import java.util.List;
 @Component
 public class LandServiceImpl implements LandService {
     private final LandRepository landRepository;
+    private final CoordinateConversionService coordinateConversionService;
 
-    public LandServiceImpl(LandRepository landRepository) {
+    public LandServiceImpl(LandRepository landRepository, CoordinateConversionService coordinateConversionService) {
         this.landRepository = landRepository;
+        this.coordinateConversionService = coordinateConversionService;
     }
+
 
     @Override
     public List<Land> findAll() {
@@ -30,7 +33,10 @@ public class LandServiceImpl implements LandService {
     }
 
     @Override
-    public Land join(Land land) {
+    public Land join(Land land) throws Exception {
+        Coordinates coordinates = coordinateConversionService.getJsonData(land.getAddress());
+        land.setX(coordinates.getX());
+        land.setY(coordinates.getY());
         landRepository.saveCoordinate(landRepository.saveLand(land));
         return land;
     }

@@ -51,7 +51,7 @@ public class LandServiceApi {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/land/save")
-    public Land SaveLand(@RequestBody Land land) {
+    public Land SaveLand(@RequestBody Land land) throws Exception {
         return landService.join(land);
     }
 

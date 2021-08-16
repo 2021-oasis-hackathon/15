@@ -7,7 +7,7 @@ import java.util.List;
 public interface LandService {
 
     // 토지 등록
-    Land join(Land land);
+    Land join(Land land) throws Exception;
 
     // id로 토지 검색해서 토지 한개 반환
     Land findOneById(Long id);
