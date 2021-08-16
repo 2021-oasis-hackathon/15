@@ -4,9 +4,7 @@ import hackathon.core.domain.*;
 import hackathon.core.repository.LandRepository;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Component
 public class LandServiceImpl implements LandService {
@@ -43,13 +41,16 @@ public class LandServiceImpl implements LandService {
 
     @Override
     public Land findOneById(Long id) {
-        Land land = landRepository.findById(id);
-        Coordinates coordinates = landRepository.findCoordinateById(land.getId());
+        Optional<Land> land = landRepository.findById(id);
+        land.ifPresentOrElse(l -> {
+            Coordinates coordinates = landRepository.findCoordinateById(l.getId());
 
-        land.setX(coordinates.getX());
-        land.setY(coordinates.getY());
-
-        return land;
+            l.setX(coordinates.getX());
+            l.setY(coordinates.getY());
+        }, () -> {
+            throw new NoSuchElementException("id에 맞는 토지를 찾을 수 없습니다.");
+        });
+        return land.get();
     }
 
     @Override
@@ -86,6 +87,7 @@ public class LandServiceImpl implements LandService {
     @Override
     public Booking saveDate(BookingForm form) {
         Booking book = new Booking();
+        book.setBooking(form.getBooking_date() + " " + form.getBooking_time());
 
         String[] bookDate = form.getBooking_date().split("-");
         String[] bookTime = form.getBooking_time().split(":");
@@ -101,7 +103,7 @@ public class LandServiceImpl implements LandService {
 
     @Override
     public Booking findDateById(long id) {
-        return landRepository.findDate(id);
+        return landRepository.findDate(id).get();
     }
 
     @Override

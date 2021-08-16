@@ -8,9 +8,12 @@ import javax.sql.DataSource;
 import java.sql.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class MemoryLandRepository implements LandRepository {
@@ -96,7 +99,7 @@ public class MemoryLandRepository implements LandRepository {
 
 
     @Override
-    public Land findById(long id) {
+    public Optional<Land> findById(long id) {
         String sql = "select * from land where id = ?";
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -111,7 +114,6 @@ public class MemoryLandRepository implements LandRepository {
             Land land = new Land();
             if (rs.next()) {
 
-
                 land.setId(rs.getLong("id"));
                 land.setAddress(rs.getString("address"));
                 land.setArea_size(rs.getInt("area_size"));
@@ -124,9 +126,10 @@ public class MemoryLandRepository implements LandRepository {
                 land.setCombine(rs.getString("combine"));
                 land.setTree_crush(rs.getString("tree_crush"));
                 land.setIncentive(rs.getInt("incentive"));
+                return Optional.of(land);
             }
 
-            return land;
+            return Optional.empty();
 
         } catch (Exception e) {
             throw new IllegalStateException(e);
@@ -254,10 +257,13 @@ public class MemoryLandRepository implements LandRepository {
         ResultSet rs = null;
 
         Date currentDate = new Date();
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
+        book.setCurrent(format.format(currentDate));
 
         book.setCurrent_datetime(currentDate);
         book.setLand_id(land_id);
+
 
         int year = book.getBooking_datetime().getYear() - 1900;
         int month = book.getBooking_datetime().getMonth();
@@ -299,7 +305,7 @@ public class MemoryLandRepository implements LandRepository {
     }
 
     @Override
-    public Booking findDate(long id) {
+    public Optional<Booking> findDate(long id) {
         String sql = "select * from booking where id = ?";
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -318,9 +324,12 @@ public class MemoryLandRepository implements LandRepository {
                 book.setCurrent_datetime(rs.getTimestamp("current_datetime"));
                 book.setLand_id(rs.getLong("land_id"));
                 book.setPhone(rs.getString("phone"));
+                book.setBooking(rs.getString("booking_datetime"));
+                book.setCurrent(rs.getString("current_datetime"));
                 book.setId(id);
+                return Optional.of(book);
             }
-            return book;
+            return Optional.empty();
 
         } catch (Exception e) {
             throw new IllegalStateException(e);

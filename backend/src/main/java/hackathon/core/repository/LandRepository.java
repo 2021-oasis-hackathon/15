@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface LandRepository {
@@ -12,7 +13,7 @@ public interface LandRepository {
 
     Land saveCoordinate(Land land);
 
-    Land findById(long id);
+    Optional<Land> findById(long id);
 
     List<Land> findByAddress(String address);
 
@@ -22,7 +23,7 @@ public interface LandRepository {
 
     Booking saveDate(Booking book, long land_id);
 
-    Booking findDate(long id);
+    Optional<Booking> findDate(long id);
 
     List<Notice> findNotice();
 

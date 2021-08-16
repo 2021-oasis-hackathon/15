@@ -13,7 +13,25 @@ public class Booking {
 
     private Date booking_datetime;
     private Date current_datetime;
+    private String booking;
+    private String current;
     private String phone;
+
+    public String getBooking() {
+        return booking;
+    }
+
+    public void setBooking(String booking) {
+        this.booking = booking;
+    }
+
+    public String getCurrent() {
+        return current;
+    }
+
+    public void setCurrent(String current) {
+        this.current = current;
+    }
 
     public String getPhone() {
         return phone;
