@@ -168,6 +168,8 @@ public class MemoryLandRepository implements LandRepository {
                 land.setFluid_fertilizer(rs.getString("fluid_fertilizer"));
                 land.setCombine(rs.getString("combine"));
                 land.setTree_crush(rs.getString("tree_crush"));
+                land.setIncentive(rs.getInt("incentive"));
+
                 lands.add(land);
             }
             return lands;
@@ -207,6 +209,7 @@ public class MemoryLandRepository implements LandRepository {
                 land.setFluid_fertilizer(rs.getString("fluid_fertilizer"));
                 land.setCombine(rs.getString("combine"));
                 land.setTree_crush(rs.getString("tree_crush"));
+                land.setIncentive(rs.getInt("incentive"));
 
                 lands.add(land);
             }
