@@ -126,6 +126,7 @@ public class MemoryLandRepository implements LandRepository {
                 land.setCombine(rs.getString("combine"));
                 land.setTree_crush(rs.getString("tree_crush"));
                 land.setIncentive(rs.getInt("incentive"));
+                land.setPicture(rs.getString("picture"));
                 return Optional.of(land);
             }
 
