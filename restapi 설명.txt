@@ -7,10 +7,10 @@ http://54.180.1.215:8080/login/save
 
 post 로 보낼 것
 
-loginId 		// 아이디		String
-name 		// 회원 이름	String
-passsword	// 비밀번호	String
-phone		// 전화번호	String
+loginId 		// 아이디		String  - 입력시 필요한 값  
+name 		// 회원 이름	String  - 입력시 필요한 값  
+passsword	// 비밀번호	String  - 입력시 필요한 값  
+phone		// 전화번호	String  - 입력시 필요한 값  
  
 입력 예)
 {
@@ -31,12 +31,13 @@ http://54.180.1.215:8080/login
 post 로 보낼 것
 
 
-loginId 		// 아이디		String
+loginId 		// 아이디		String  - 입력시 필요한 값  
 name 		// 회원 이름	String
-passsword	// 비밀번호	String
+passsword	// 비밀번호	String  - 입력시 필요한 값  
 phone		// 전화번호	String
 
-입력 예)
+
+입력 예)  - 입력시 필요한 값  
 {
   "loginId":"cjswltjr11",
   "password":"1234"
@@ -65,6 +66,7 @@ address;         	// 주소
 area_size;          	// 면적, 평수
 money;             	// 연간 리스 비용
 incentive;          	// 인센티브
+picture;   	// 사진
 crops;           	// 재배 작물
 type;            	// 공부 지목
 tractor;         	// 트랙터
@@ -72,7 +74,6 @@ rice_planting;   	// 이앙기
 fluid_fertilizer;	// 액상비료 살포기
 combine;         	// 콤바인
 tree_crush;      	// 나무 분쇄기
-picture;   	// 사진
 x;               	// x 좌표
 y;               	// y 좌표
 
@@ -86,10 +87,10 @@ http://54.180.1.215:8080/land/address
 
 get방식으로 
 
-
+입력시 필요한 값  
 address  		// 검색할 지역이름 (중복으로 여러개일경우 ,로 구분해서) 	String
-min_area		// 검색할 최소 면적					Int
-max_area		// 검색할 최대 면적					Int
+min_area		// 검색할 최소 면적				Int
+max_area		// 검색할 최대 면적				Int
 min_money	// 검색할 최소 연간 리스 비용			Int
 max_money	// 검색할 최대 연간 리스 비용			Int
 type		// 지목 		(논, 밭, 과수원 중 하나로 검색)	String
@@ -143,6 +144,7 @@ http://54.180.1.215:8080/land/id
 
 get방식
 
+  - 입력시 필요한 값  
 id 	// 토지 id 값 (DB에 있는 id 값으로 검색 후 리스트를 보여줄 때 id 값도 같이 넘겨줘서 클릭 후 
 		상세 페이지로 넘어갈 때 id를 이용한 검색으로 생각)
 
@@ -210,13 +212,43 @@ get 방식
 "y": 32.24123
 }
 ]
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+토지 저장 ( 제가 db에 저장할꺼라 굳이 사용안하실듯)
+
+http://localhost:8080/land/save
+http://54.180.1.215:8080/land/save
+
+post 방식
+
+입력 형식)
+{
+"address": "장소",
+"area_size": 면적,
+"money": 연간리스비용,
+"incentive": 인센티브,
+"crops": "작물종류",
+"type": "지목",
+"picture": "사진",
+"tractor": "트랙터",
+"rice_planting": "이앙기",
+"fluid_fertilizer": "액상사료살포기",
+"combine": "콤바인",
+"tree_crush": "나무분쇄기"
+}
+
+아래 농기계 5개는 null값 가능 (나머지는 not null)
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 예약 번호로 예약내역 검색
 http://localhost:8080/date
 http://54.180.1.215:8080/date
+
 get 방식
 
+  - 입력시 필요한 값  
 id 	// 예약 번호	Int
 
 입력 예)
@@ -238,9 +270,11 @@ http://54.180.1.215:8080/date?id=2
 토지 거래 예약
 http://localhost:8080/date/save
 http://54.180.1.215:8080/date/save
+
 post 방식
 
-land_id		// 토지 id			Int
+  - 입력시 필요한 값  
+land_id		// 토지 id		Int
 booking_date	// 예약 날짜 (yyyy-MM-dd)	String
 booking_time	// 예약 시간 (hh:mm:ss)	String
 phone		// 전화번호		String
@@ -274,6 +308,9 @@ get방식
 category		// 공지사항 카테고리 (예) 공지, 행사, 안내???	String
 title		// 글 제목				String
 date		// 작성 날짜				String
+
+입력 예)
+http://54.180.1.215:8080/notice
 
 반환 예)
 [
@@ -309,9 +346,12 @@ http://54.180.1.215:8080/news
 
 get방식
 
-title 		// 뉴스 제목				String
-text		// 뉴스 내용				String
-date		// 작성 날짜				String
+title 		// 뉴스 제목	String
+text		// 뉴스 내용	String
+date		// 작성 날짜	String
+
+입력 예)
+http://54.180.1.215:8080/news
 
 반환 예)
 {
