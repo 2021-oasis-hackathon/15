@@ -4,6 +4,7 @@ import hackathon.core.domain.*;
 import hackathon.core.service.LandService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
@@ -16,42 +17,50 @@ public class LandServiceApi {
     }
 
     @GetMapping(value = "/land/address")
-    public List<Land> CallLandByAddress(LandForm form) {
+    public List<Land> CallLandByAddress(LandForm form, HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
         return landService.findByAddress(form);
     }
 
     @GetMapping(value = "/land/id")
-    public Land CallLandById(@RequestParam("id") long id) {
+    public Land CallLandById(@RequestParam("id") long id, HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
         return landService.findOneById(id);
     }
 
     @GetMapping(value = "/land")
-    public List<Land> CallLandById() {
+    public List<Land> CallLandById(HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
         return landService.findAll();
     }
 
     @GetMapping(value = "/date")
-    public Booking CallDateById(@RequestParam("id") long id) {
+    public Booking CallDateById(@RequestParam("id") long id, HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
         return landService.findDateById(id);
     }
 
     @GetMapping(value = "/notice")
-    public List<Notice> CallNotice() {
+    public List<Notice> CallNotice(HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
         return landService.findNotice();
     }
 
     @GetMapping(value = "/news")
-    public News CallNews() {
+    public News CallNews(HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
         return landService.findNews();
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/date/save")
-    public Booking SaveDate(@RequestBody BookingForm form) {
+    public Booking SaveDate(@RequestBody BookingForm form, HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
         return landService.saveDate(form);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/land/save")
-    public Land SaveLand(@RequestBody Land land) throws Exception {
+    public Land SaveLand(@RequestBody Land land, HttpServletResponse response) throws Exception {
+        response.setHeader("Access-Control-Allow-Origin", "*");
         return landService.join(land);
     }
 
