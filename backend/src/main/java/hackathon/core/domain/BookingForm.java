@@ -1,7 +1,9 @@
 package hackathon.core.domain;
 
+import lombok.Data;
 import org.springframework.stereotype.Component;
 
+@Data
 @Component
 public class BookingForm {
 
@@ -10,35 +12,4 @@ public class BookingForm {
     private String booking_time;
     private String phone;
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public long getLand_id() {
-        return land_id;
-    }
-
-    public void setLand_id(long land_id) {
-        this.land_id = land_id;
-    }
-
-    public String getBooking_date() {
-        return booking_date;
-    }
-
-    public void setBooking_date(String booking_date) {
-        this.booking_date = booking_date;
-    }
-
-    public String getBooking_time() {
-        return booking_time;
-    }
-
-    public void setBooking_time(String booking_time) {
-        this.booking_time = booking_time;
-    }
 }

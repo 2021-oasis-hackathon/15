@@ -1,8 +1,6 @@
 package hackathon.core;
 
 import hackathon.core.repository.LandRepository;
-import hackathon.core.repository.MemberRepository;
-import hackathon.core.repository.MemoryMemberRepository;
 import hackathon.core.repository.MemoryLandRepository;
 import hackathon.core.service.*;
 import org.springframework.context.annotation.Configuration;
@@ -27,16 +25,6 @@ public class Config {
     @Bean
     public LandService landService() {
         return new LandServiceImpl(landRepository(), coordinateConversionService());
-    }
-
-    @Bean
-    public MemberRepository memberRepository(){
-        return new MemoryMemberRepository(dataSource);
-    }
-
-    @Bean
-    public LoginService loginService(){
-        return new LoginServiceImpl(memberRepository());
     }
 
     @Bean
