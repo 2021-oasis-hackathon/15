@@ -1,0 +1,75 @@
+/*main section(메인 내용)*/
+section{
+	text-align: center;
+}
+p{
+	font-size: 25px;
+	font-weight: 550;
+}
+section table{
+	border: solid 3px #F2F2F2;
+	border-collapse: collapse;
+	padding: 0px;
+}
+section table{
+	/*idth: 100%;*/
+}
+section tr{
+	border: solid 3px #F2F2F2;
+	padding: 0px;
+}
+section td{
+	padding: 5px;
+}
+
+.article_1 p{
+	text-align: center;
+}
+.article_1{
+	float: left;
+	width: 630px;
+	height: 220px;
+	background: #F2F2F2;
+}
+.article_1 a{
+	float: left;
+}
+.article_2{
+	float: right;
+	width: 630px;
+	height: 220px;
+	background: #F2F2F2;
+}
+.article_1 img{
+	float: left;
+	margin:15px;
+}
+.article_1 table{
+	width: 390px;
+	float: left;
+	font-size: 16px;
+}
+table{
+	table-layout: fixed;
+}
+td{
+	width: 80px;
+	height: 30px;
+	word-wrap: break-word;
+}
+
+.input{
+	width: 155px;
+	height: 32px;
+}
+.table_A{
+	width: 100px;
+	background: #F2F2F2;
+}
+.td_B{
+	width: 57.2%;
+}
+.td_width{
+	width: 20%;
+	
+}

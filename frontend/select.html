@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>검색하기</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <link rel="icon" href="img/파비콘-이미지.png">
+    <link rel="stylesheet" href="css/메뉴바.css" media="all"/>
+    <link rel="stylesheet" href="css/select_section.css" media="all"/>
+    <style>
+        body {
+            width: 1280px;
+            height: 1080px;
+        }
+
+        input.search-button {
+            background: url("/img/농지 찾기 버튼.png");
+            border: none;
+            width: 163px;
+            height: 63px;
+            cursor: pointer;
+        }
+
+        input.Initialization-button {
+            background: url("/img/전체 초기화 버튼.png");
+            border: none;
+            width: 163px;
+            height: 63px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<!--헤더 | css 디자인은 메뉴바.css가져옴-->
+<header>
+    <nav class="login">
+        <a href="#"> 로그인 </a>/<a href="#"> 회원가입</a>
+    </nav>
+    <aside class="logo">
+        <a href="main.html"><img src="img/로고.png"></a>
+    </aside>
+</header>
+<section>
+    <p>어떤 농지를 찾고 계세요?</p>
+    <p style='display: none' id="p_address"></p>
+    <p style='display: none' id="p_min_area"></p>
+    <p style='display: none' id="p_max_area"></p>
+    <p style='display: none' id="p_min_money"></p>
+    <p style='display: none' id="p_max_money"></p>
+    <p style='display: none' id="p_type"></p>
+    <!--자바스크립트으로 처리-->
+    <script src="js/main_table.js"></script>
+    <script src="js/ajax.js"></script>
+    <script>table_create();</script>
+    <br>
+    <input type="button" id="search" class="search-button" onclick="button_click_search()">
+    <input type="button" id="initial" class="Initialization-button">
+    <br>
+    <div id="list">
+        <script>
+            var landForm = {
+                address: searchParam("p_address"),
+                min_area: searchParam("p_min_area"),
+                max_area: searchParam("p_max_area"),
+                min_money: searchParam("p_min_money"),
+                max_money: searchParam("p_max_money"),
+                type: searchParam("p_type")
+            }
+            window.onload = findLandByAddress(landForm);
+            searchLoad(landForm);
+        </script>
+    </div>
+</section>
+</body>
+</html>

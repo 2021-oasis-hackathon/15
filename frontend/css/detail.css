@@ -1,0 +1,34 @@
+.next{
+	float: right;
+}
+.call{
+	float: right;
+}
+.head_title{
+	font-size: 30px;
+}
+.head_tille #head_text{
+	font-size: 20px;
+	color: #4472c4;
+}
+.article_1{
+	height: 120px;
+}
+.article_2_left{
+	width: 580px;
+	height: 547px;
+	float: left;
+	background: #f2f2f2;
+	font-size: 24px;
+}
+.article_2_right{
+	width: 547px;
+	height: 547px;
+	float: right;
+	background: #f2f2f2;
+}
+.article_3{
+	float: right;
+	width: 1280px;
+	height: 20px;
+}
