@@ -57,3 +57,9 @@ td{
 .td_B{
 	width: 57.2%;
 }
+
+.zone{
+	background-color: white;
+	border:0;
+	outline: 0;
+}

@@ -13,7 +13,7 @@ function table_create() {//테이블 생성
             document.write("<tr></tr><td class=table_A></td>");
         }
 
-        document.write("<td><input id=arr_zone" + i + " type='button' onclick='button_click_arr_zone(" + i + ")' value=" + arr_zone[i] + "></td>");
+        document.write("<td><input class='zone' id=arr_zone" + i + " type='button' onclick='button_click_arr_zone(" + i + ")' value=" + arr_zone[i] + "></td>");
 
     }
     for (; i % 13 != 0; i++) {
@@ -21,19 +21,19 @@ function table_create() {//테이블 생성
     }
     document.write("</tr>");
 
-    document.write("<table><tr><td class=table_A>" + "면적" + "</td>");
+    document.write("<table><tr><td class=table_A>" + "면적" + " m<sup>2</sup></td>");
     document.write("<td><input class=input id=min_area type=number onchange='text_change(min_area)'></td>" + "<td>~</td>" + "<td><input class=input id=max_area type=number onchange='text_change(max_area)'></td>");
     document.write("<td class=td_B></td>");
     document.write("</tr>");
 
     document.write("<table><tr><td class=table_A>" + "리스료(연)" + "</td>");
-    document.write("<td><input class=input id=min_money type=number onchange='text_change(min_money)'></td>" + "<td>~</td>" + "<td><input class=input id=max_money type=number onchange='text_change(max_money)'></td>");
+    document.write("<td><input class=input id=min_money placeholder='만원' type=number onchange='text_change(min_money)'></td>" + "<td>~</td>" + "<td><input class=input id=max_money placeholder='만원' type=number onchange='text_change(max_money)'></td>");
     document.write("<td class=td_B></td>");
     document.write("</tr>");
 
     document.write("<table><tr><td class=table_A>" + "용도" + "</td>");
     for (i = 0; i < arr_use.length; i++) {
-        document.write("<td><input id=arr_use" + i + " type='button' onclick='button_click_arr_use(" + i + ")' value=" + arr_use[i] + "></td>");
+        document.write("<td><input class='zone' id=arr_use" + i + " type='button' onclick='button_click_arr_use(" + i + ")' value=" + arr_use[i] + "></td>");
     }
     for (; i % 13 != 0; i++) {
         document.write("<td></td>");
@@ -42,7 +42,7 @@ function table_create() {//테이블 생성
 }
 
 
-// 지역클릭 시 색 변화, 넘겨줄 값 변화
+// 지역 클릭 시 색 변화, 넘겨줄 값 변화
 function button_click_arr_zone(i) {
     var property = document.getElementById("arr_zone" + i);
     if (property.style.backgroundColor === "red") {                     // 클릭 시 변화할 색
@@ -101,10 +101,6 @@ function button_click_search() {
         + '&p_type=' + p_type.textContent;
 }
 
-
-function searchParam(key) {
-    return new URLSearchParams(location.search).get(key);
-};
 
 function searchLoad(landForm) {
     document.getElementById("p_address").innerText = landForm.address;

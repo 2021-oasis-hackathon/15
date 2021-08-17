@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>검색하기</title>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="js/ajax.js"></script>
     <link rel="icon" href="img/파비콘-이미지.png">
     <link rel="stylesheet" href="css/메뉴바.css" media="all"/>
     <link rel="stylesheet" href="css/select_section.css" media="all"/>
@@ -50,26 +51,25 @@
     <p style='display: none' id="p_type"></p>
     <!--자바스크립트으로 처리-->
     <script src="js/main_table.js"></script>
-    <script src="js/ajax.js"></script>
     <script>table_create();</script>
     <br>
     <input type="button" id="search" class="search-button" onclick="button_click_search()">
     <input type="button" id="initial" class="Initialization-button">
     <br>
     <div id="list">
-        <script>
-            var landForm = {
-                address: searchParam("p_address"),
-                min_area: searchParam("p_min_area"),
-                max_area: searchParam("p_max_area"),
-                min_money: searchParam("p_min_money"),
-                max_money: searchParam("p_max_money"),
-                type: searchParam("p_type")
-            }
-            window.onload = findLandByAddress(landForm);
-            searchLoad(landForm);
-        </script>
     </div>
 </section>
+<script>
+    var landForm = {
+        address: searchParam("p_address"),
+        min_area: searchParam("p_min_area"),
+        max_area: searchParam("p_max_area"),
+        min_money: searchParam("p_min_money"),
+        max_money: searchParam("p_max_money"),
+        type: searchParam("p_type")
+    }
+    window.onload = findLandByAddress(landForm);
+    searchLoad(landForm);
+</script>
 </body>
 </html>

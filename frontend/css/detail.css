@@ -1,11 +1,12 @@
 .next{
 	float: right;
 }
+.head_title{
+	float: left;
+	font-size: 34px;
+}
 .call{
 	float: right;
-}
-.head_title{
-	font-size: 30px;
 }
 .head_tille #head_text{
 	font-size: 20px;
@@ -15,7 +16,7 @@
 	height: 120px;
 }
 .article_2_left{
-	width: 580px;
+	width: 700px;
 	height: 547px;
 	float: left;
 	background: #f2f2f2;

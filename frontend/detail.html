@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="UTF-8">
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="js/ajax.js"></script>
+	<link rel="stylesheet" href="css/메뉴바.css" media="all"/>
+	<link rel="stylesheet" href="css/detail.css" media="all"/>
+	<style>
+		body{
+			width: 1280px;
+			height: 1080px;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<nav class="login">
+			<a href="#"> 로그인 </a>/<a href="#"> 회원가입</a>
+		</nav>
+		<aside class="logo">
+			<a href="main.html"><img src="img/로고.png"></a>
+		</aside>
+	</header>
+	<section class="article_1">
+		<table class="head_title">
+			<tr><td id="head_address">전남 나주시 대호길 11</td><td></td></tr>
+			<tr><td id="head_money">연 리스료 000원</td><td id="head_area_money">면적 당 가격 000원</td></tr>
+		</table>
+		<table class="call">
+			<tr><td>
+				<a class="next" href="#"><img src="img/예약하기버튼.png"></a></td>
+			</tr>
+			<tr>
+				<td><img src="img/예약하기 전화아이콘.png"> 010-1234-5678</td>
+			</tr>
+		</table>
+	</section>
+	<br>
+	<section class="article_2_left">
+		<p style='display: none' id="x"></p>
+		<p style='display: none' id="y"></p>
+		<table>
+			<tr><td><img src="img/면적.png"></td><td id="land_area">면적: </td></tr>
+			<tr><td><img src="img/면적 당 가격.png"></td><td id="land_area_money">면적 당 가격: </td></tr>
+			<tr><td><img src="img/용도.png"></td><td id="land_type">용도: </td></tr>
+			<tr><td><img src="img/재배작물.png"></td><td id="land_crops">재배작물: </td></tr>
+			<tr><td><img src="img/농사인센티브.png"></td><td id="land_incentive">농사 인센티브: </td></tr>
+			<tr><td><img src="img/보유농기계.png"></td><td id="land_machine">보유 농기계: </td></tr>
+		</table>
+	</section>
+	<section class="article_2_right">
+		
+	</section>
+	<section class="article_3">
+		<hr>
+			상세정보
+		<hr>
+	</section>
+	<script>
+		findLandById(searchParam("id"));
+	</script>
+</body>
+</html>
