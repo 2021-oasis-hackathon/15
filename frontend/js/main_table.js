@@ -1,14 +1,14 @@
 var arr_zone = ['군산', '익산', '완주', '진안', '무주', '장수', '김제', '전주', '부안', '정읍', '임실', '장수', '나주', '고창', '순창', '남원', '영광', '장성', '담양', '곡성', '구례', '함평', '광주', '화순', '순천', '진도', '광양', '무안', '신안', '목포', '영암', '장흥', '강진', '보성', '고흥', '여수', '해남'];//지역
-var start_area = 0;//시작가격
-var end_area = 1;//마지막가격
-var area_price = 1;//평단가
+var start_area = 0; // 시작가격
+var end_area = 1;   // 마지막가격
+var area_price = 1; // 평단가
 var i = 0;
 var arr_use = [' 논 ', ' 밭 ', '과수원', '기타'];
 var e;
-var button_click_rgb = "rgb(215, 159, 89)";
+var button_click_rgb = "rgb(215, 159, 89)";     // 지역 버튼 클릭 시 색상 (rgb 값으로 넣어주세요)
 
 function table_create() {//테이블 생성
-    document.write("<table><tr><td class=" + "table_A>" + "지역" + "</td>");
+    document.write("<table style=\"border-bottom: none;\"><tr><td class=" + "table_A>" + "지역" + "</td>");
     for (; i < arr_zone.length; i++) {
         if ((i % 13 == 0) && !(i == 0)) {
             document.write("<tr></tr><td class=table_A></td>");
@@ -22,12 +22,12 @@ function table_create() {//테이블 생성
     }
     document.write("</tr>");
 
-    document.write("<table><tr><td class=table_A>" + "면적" + " m<sup>2</sup></td>");
+    document.write("<table style=\"border-bottom: none;\"><tr><td class=table_A>" + "면적" + " m<sup>2</sup></td>");
     document.write("<td><input class=input id=min_area type=number onchange='text_change(min_area)'></td>" + "<td>~</td>" + "<td><input class=input id=max_area type=number onchange='text_change(max_area)'></td>");
     document.write("<td class=td_B></td>");
     document.write("</tr>");
 
-    document.write("<table><tr><td class=table_A>" + "리스료(연)" + "</td>");
+    document.write("<table style=\"border-bottom: none;\"><tr><td class=table_A>" + "리스료(연)" + "</td>");
     document.write("<td><input class=input id=min_money placeholder='만원' type=number onchange='text_change(min_money)'></td>" + "<td>~</td>" + "<td><input class=input id=max_money placeholder='만원' type=number onchange='text_change(max_money)'></td>");
     document.write("<td class=td_B></td>");
     document.write("</tr>");
@@ -46,7 +46,6 @@ function table_create() {//테이블 생성
 // 지역 클릭 시 색 변화, 넘겨줄 값 변화
 function button_click_arr_zone(i) {
     var property = document.getElementById("arr_zone" + i);
-    console.log(property.style.backgroundColor)
     if (property.style.backgroundColor === button_click_rgb) {                     // 클릭 시 변화할 색
         property.style.backgroundColor = "white";              // 기존 색
         var text = document.getElementById("p_address").textContent;
