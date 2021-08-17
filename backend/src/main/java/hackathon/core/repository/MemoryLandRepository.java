@@ -205,6 +205,7 @@ public class MemoryLandRepository implements LandRepository {
                 land.setMoney(rs.getLong("money"));
                 land.setCrops(rs.getString("crops"));
                 land.setType(rs.getString("type"));
+                land.setPicture(rs.getString("picture"));
                 land.setTractor(rs.getString("tractor"));
                 land.setRice_planting(rs.getString("rice_planting"));
                 land.setFluid_fertilizer(rs.getString("fluid_fertilizer"));
