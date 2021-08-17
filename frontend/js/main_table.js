@@ -3,8 +3,9 @@ var start_area = 0;//시작가격
 var end_area = 1;//마지막가격
 var area_price = 1;//평단가
 var i = 0;
-var arr_use = ['논', '밭', '과수원', '기타'];
+var arr_use = [' 논 ', ' 밭 ', '과수원', '기타'];
 var e;
+var button_click_rgb = "rgb(215, 159, 89)";
 
 function table_create() {//테이블 생성
     document.write("<table><tr><td class=" + "table_A>" + "지역" + "</td>");
@@ -45,8 +46,9 @@ function table_create() {//테이블 생성
 // 지역 클릭 시 색 변화, 넘겨줄 값 변화
 function button_click_arr_zone(i) {
     var property = document.getElementById("arr_zone" + i);
-    if (property.style.backgroundColor === "red") {                     // 클릭 시 변화할 색
-        property.style.backgroundColor = "white"                        // 기존 색
+    console.log(property.style.backgroundColor)
+    if (property.style.backgroundColor === button_click_rgb) {                     // 클릭 시 변화할 색
+        property.style.backgroundColor = "white";              // 기존 색
         var text = document.getElementById("p_address").textContent;
         if (text.indexOf("," + property.value)) {
             var str = text.replace("," + property.value, "");
@@ -56,7 +58,7 @@ function button_click_arr_zone(i) {
             document.querySelector("#p_address").innerText = "";
         }
     } else {
-        property.style.backgroundColor = "red"                              // 클릭 시 변화할 색
+        property.style.backgroundColor = button_click_rgb;                          // 클릭 시 변화할 색
         var text = document.getElementById("p_address").textContent;
         if (text === "") {
             document.querySelector("#p_address").innerText = property.value;
@@ -77,10 +79,10 @@ function text_change(input) {
 function button_click_arr_use(i) {
     var text = document.getElementById("p_type");
     for (var j = 0; j < arr_use.length; j++) {
-        document.getElementById("arr_use" + j).style.backgroundColor = "white"      // 용도 초기 색
+        document.getElementById("arr_use" + j).style.backgroundColor = "white";    // 용도 초기 색
     }
 
-    document.getElementById("arr_use" + i).style.backgroundColor = "red"        // 지목 클릭시 색
+    document.getElementById("arr_use" + i).style.backgroundColor = button_click_rgb;    // 지목 클릭시 색
     text.innerText = document.getElementById("arr_use" + i).value;
 }
 
@@ -114,7 +116,7 @@ function searchLoad(landForm) {
 
     for (var i = 0; i < addressArray.length; i++) {
         if (arr_zone.indexOf(addressArray[i]) != -1) {
-            document.getElementById("arr_zone" + arr_zone.indexOf(addressArray[i])).style.backgroundColor = "red";      // 클릭 시 변화할 색
+            document.getElementById("arr_zone" + arr_zone.indexOf(addressArray[i])).style.backgroundColor = button_click_rgb;      // 클릭 시 변화할 색
         }
     }
 
@@ -123,7 +125,7 @@ function searchLoad(landForm) {
     document.getElementById("min_money").value = landForm.min_money;
     document.getElementById("max_money").value = landForm.max_money;
 
-    document.getElementById("arr_use" + arr_use.indexOf(landForm.type)).style.backgroundColor = 'red';                         // 클릭 시 변화할 색
+    document.getElementById("arr_use" + arr_use.indexOf(landForm.type)).style.backgroundColor = button_click_rgb;                         // 클릭 시 변화할 색
 }
 
 function input_event() {    //입력 받은 값 출력

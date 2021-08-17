@@ -62,4 +62,8 @@ td{
 	background-color: white;
 	border:0;
 	outline: 0;
+	border-radius: 50%;
+	cursor: pointer;
+	font-size: 15px;
+	padding: 7px 11px;
 }
