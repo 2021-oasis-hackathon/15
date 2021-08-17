@@ -19,3 +19,7 @@ header img {
     height: 95px;
     object-fit: cover;
 }
+
+body{
+    margin: 0 auto;
+}
