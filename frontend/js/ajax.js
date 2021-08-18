@@ -20,13 +20,12 @@ function findLandByAddress(landForm) {
         success: (data) => {
             var array1 = eval(data);
 
-
             for (var i = 0; i < array1.length; i++) {
                 var div = document.createElement('div');
-                var picture = '/img/LandPicture/' + array1[i]["picture"]+'.jpeg';
+                var picture = 'img/LandPicture/' + array1[i]["picture"].substring(3, array1[i]["picture"].length) + '.jpeg';
                 console.log(picture);
                 var str = "<article style=\" cursor: pointer;\" onclick=\"location.href='detail.html?id=" + array1[i]["id"] + "';\" class='article_1' id =" + array1[i]["id"] + ">\n" +
-                    "        <img src="+picture+" width='155px' height='155px'/>\n" +
+                    "        <img src=" + picture + " width='155px' height='155px'/>\n" +
                     "        <table>\n" +
                     "            <tr>\n" +
                     "                <td class='td_width'>주소</td>\n" +
@@ -80,9 +79,9 @@ function findLandById(id) {
 
             document.getElementById("head_address").innerText = data["address"];
             document.getElementById("head_money").innerText = "연 리스료 : " + data["money"] + " 만원";
-            document.getElementById("head_area_money").innerText = "면적 당 가격 : " + data["money"] / data["area_size"] * 10000 + " 원";
+            document.getElementById("head_area_money").innerText = "면적 당 가격 : " + Math.ceil(data["money"] / data["area_size"] * 10000) + " 원";
             document.getElementById("land_area").innerHTML = "면적 : " + data["area_size"] + " m<sup>2</sup>";
-            document.getElementById("land_area_money").innerText = "면적 당 가격 : " + data["money"] / data["area_size"] * 10000 + " 원";
+            document.getElementById("land_area_money").innerText = "면적 당 가격 : " + Math.ceil(data["money"] / data["area_size"] * 10000) + " 원";
             document.getElementById("land_type").innerText = "용도 : " + data["type"];
             document.getElementById("land_crops").innerText = "재배작물 : " + data["crops"];
             document.getElementById("land_incentive").innerText = "농사 인센티브 : " + data["incentive"] + " %";

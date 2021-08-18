@@ -1,0 +1,14 @@
+	/*초기 설정*/
+	/*오른쪽 정렬 - 로그인 / 회원가입*/
+	.login{
+		text-align: right;
+	}
+	/*링크 밑줄 및 색상 변경*/
+	.login a{
+		text-decoration: none;
+		color: black;
+	}s
+	.logo{
+		width: 122px;
+		height: 95px;
+	}

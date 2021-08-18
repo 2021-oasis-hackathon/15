@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <title>해커톤 메인 홈</title>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-    <link rel="icon" href="img/파비콘-이미지.png">
-    <link rel="stylesheet" href="css/메뉴바.css" media="all"/>
+    <script src="js/main_table.js"></script>
+    <link rel="icon" href="img/paracone.png">
+    <link rel="stylesheet" href="css/menu.css" media="all"/>
     <link rel="stylesheet" href="css/main_section.css" media="all"/>
     <link rel="stylesheet" href="css/header.css" media="all"/>
     <style>
@@ -15,7 +16,7 @@
         }
 
         input.search-button {
-            background: url("/img/농지 찾기 버튼.png");
+            background: url("img/search_button.png");
             border: none;
             width: 163px;
             height: 63px;
@@ -23,7 +24,7 @@
         }
 
         input.Initialization-button {
-            background: url("/img/전체 초기화 버튼.png");
+            background: url("img/reset_button.png");
             border: none;
             width: 163px;
             height: 63px;
@@ -38,7 +39,7 @@
         <a href="#"> 로그인 </a>/<a href="#"> 회원가입</a>
     </nav>
     <aside class="logo">
-        <a href="main.html"><img src="img/로고.png"></a>
+        <a href="main.html"><img src="img/logo_1.png"></a>
     </aside>
     <p>어떤 농지를 찾고 계세요?</p>
 </header>
@@ -55,12 +56,12 @@
     <script>table_create();</script>
     <br>
     <input type="button" id="search" class="search-button" onclick="button_click_search()">
-    <input type="button" id="initial" class="Initialization-button">
+    <input type="button" id="initial" class="Initialization-button" onclick="button_click_initial()">
     <br>
     <article class="article_1">
         <p>농담 NEWS</p>
         <hr>
-        <img src="img/뉴스 사진.png">
+        <img src="img/news_img.png">
 
         <li class="NEWS_table_1">농사, 힘들지만 뿌듯해요</li>
         <li class="NEWS_table_2">2021년 8월 16일</li>

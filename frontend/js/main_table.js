@@ -135,3 +135,26 @@ function input_event() {    //입력 받은 값 출력
         }
     };
 }
+
+
+function button_click_initial() {
+    document.getElementById("p_address").innerText = "";
+    document.getElementById("p_min_area").innerText = "";
+    document.getElementById("p_max_area").innerText = "";
+    document.getElementById("p_min_money").innerText = "";
+    document.getElementById("p_max_money").innerText = "";
+    document.getElementById("p_type").innerText = "";
+    document.getElementById("max_money").value = "";
+    document.getElementById("min_money").value = "";
+    document.getElementById("min_area").value = "";
+    document.getElementById("max_area").value = "";
+
+    for (var j = 0; j < arr_use.length; j++) {
+        document.getElementById("arr_use" + j).style.backgroundColor = "white";    // 용도 초기 색
+    }
+    for (var i = 0; i < arr_zone.length; i++) {
+        document.getElementById("arr_zone" + i).style.backgroundColor = "white";      // 클릭 시 변화할 색
+    }
+
+
+}
