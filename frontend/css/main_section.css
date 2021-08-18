@@ -1,71 +1,136 @@
 /*main section(메인 내용)*/
-section{
-	text-align: center;
-}
-p{
-		font-size: 25px;
-		font-weight: 550;
-}
-section table{
-	border: solid 3px #F2F2F2;
-	border-collapse: collapse;
-	padding: 0px;
-}
-section table{
-	/*idth: 100%;*/
-}
-section tr{
-	
-	padding: 0px;
-}
-section td{
-	padding: 5px;
+section {
+    text-align: center;
 }
 
-.article_1 p{
-	text-align: center;
+p {
+    font-size: 25px;
+    font-weight: 550;
 }
-.article_1{
-	float: left;
-	width: 68%;
-	background: #F2F2F2;
+
+section table {
+    border: solid 3px #f5e6c3;
+    border-collapse: collapse;
+    padding: 0px;
 }
-.article_1 a{
-	float: left;
+
+section table {
+    /*idth: 100%;*/
 }
-.article_2{
-	float: right;
-	width: 28%;
-	background: #F2F2F2;
+
+section tr {
+
+    padding: 0px;
 }
-table{
-	table-layout: fixed;
+
+section td {
+    padding: 5px;
 }
-td{
-	width: 80px;
-	height: 30px;
-	word-wrap: break-word;
+
+.article_1 p {
+    text-align: center;
 }
-.input{
-	width: 155px;
-	height: 32px;
+
+.article_1 {
+    float: left;
+    width: 60%;
+
 }
-.table_A{
-	width: 100px;
-	background: #F2F2F2;
+
+.article_1 a {
+    float: left;
 }
-.td_B{
-	width: 57.2%;
+
+.article_2 {
+    float: right;
+    width: 36%;
+}
+
+table {
+    table-layout: fixed;
+}
+
+td {
+    width: 79.5px;
+    height: 30px;
+    word-wrap: break-word;
+}
+
+.input {
+    width: 155px;
+    height: 32px;
+}
+
+.table_A {
+    width: 100px;
+    background: #f5e6c3;
+    font-size: 20px;
+    text-shadow: 0px 1px 0px #2f6627;
+    text-align: left;
+}
+
+.td_B {
+    width: 57.2%;
 }
 
 /* 지역 버튼 css */
-.zone{
-	background-color: white;
-	border:0;
-	outline: 0;
-	border-radius: 50%;
-	cursor: pointer;
-	font-size: 15px;
-	padding: 7px 11px;
+.zone {
+    background-color: white;
+    border-radius: 28px;
+    border: 0;
+    outline: 0;
+    font-size: 17px;
+    cursor: pointer;
+    padding: 8px 15px;
+    text-shadow: 0px 1px 0px #2f6627;
+    cursor: pointer;
 }
 
+.article_1 img {
+    margin: 10px;
+    float: left;
+}
+
+.article_1 tr {
+    width: 300px;
+}
+
+li {
+    list-style: none
+}
+
+.NEWS_table_1 {
+    text-align: left;
+    width: 610px;
+    font-size: 24px;
+}
+
+.NEWS_table_2 {
+    text-align: right;
+    width: 750px;
+    font-size: 20px;
+}
+
+.NEWS_table_3 {
+    text-align: right;
+    width: 750px;
+    font-size: 20px;
+}
+
+.NEWS_table_4 {
+    text-align: left;
+    width: 750px;
+}
+
+#plus {
+    float: right;
+}
+
+.notice {
+    text-align: left;
+    font-size: 20px
+}
+
+.article_2 table {
+    margin: 10px;
+}

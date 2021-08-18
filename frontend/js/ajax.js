@@ -25,7 +25,7 @@ function findLandByAddress(landForm) {
                 var div = document.createElement('div');
 
                 var str = "<article style=\" cursor: pointer;\" onclick=\"location.href='detail.html?id=" + array1[i]["id"] + "';\" class='article_1' id =" + array1[i]["id"] + ">\n" +
-                    "        <img src='https://via.placeholder.com/190x190'>\n" +
+                    "        <img src='https://via.placeholder.com/155x155'>\n" +
                     "        <table>\n" +
                     "            <tr>\n" +
                     "                <td class='td_width'>주소</td>\n" +
@@ -87,9 +87,59 @@ function findLandById(id) {
             document.getElementById("land_crops").innerText = "재배작물 : " + data["crops"];
             document.getElementById("land_incentive").innerText = "농사 인센티브 : " + data["incentive"] + " %";
             document.getElementById("land_machine").innerText = "보유 농기계 : " + str;
-            document.getElementById("x").innerText = data["x"];
-            document.getElementById("y").innerText = data["y"];
+
+            createMap(data["y"], data["x"]);
         }
     })
 }
 
+
+function booking(land_id, booking_date, booking_time, phone) {
+    let bookingForm = {
+        land_id: land_id,
+        booking_date: booking_date,
+        booking_time: booking_time + ":00",
+        phone: phone
+    };
+
+
+    $.ajax({
+        url: 'http://54.180.1.215:8080/date/save',
+        type: 'POST',
+        dataType: 'json',
+        contentType: 'application/json',
+        data: JSON.stringify(bookingForm),
+        success: function (data, textStatus, jqXHR) {
+            console.log('success.');
+            alert("예약이 완료되었습니다. \n예약 번호 : " + data["id"]
+                + "\n예약하신 날짜 : " + data["booking"].substring(0, 10)
+                + "\n예약하신 시간 : " + data["booking"].substring(10, 16)
+                + "\n전화번호 : " + phone
+            );
+            window.close();
+        },
+    });
+
+}
+
+
+function bookingOpen() {
+    var popupX = (window.screen.width / 2) - (500 / 2);
+
+    var popupY = (window.screen.height / 2) - (300 / 2);
+
+    window.open('date.html?id=' + searchParam('id'),
+        'PopupWin', 'height=300, width=500, left=' + popupX + ', top=' + popupY + ', screenX=' + popupX + ', screenY= ' + popupY
+    )
+    ;
+}
+
+
+function jbSubmit() {
+    var id = searchParam('id');
+    var booking_date = document.getElementById('booking_date').value;
+    var booking_time = document.getElementById('booking_time').value;
+    var phone = document.getElementById('phone').value;
+
+    booking(id, booking_date, booking_time, phone);
+}

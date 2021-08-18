@@ -7,7 +7,7 @@ p{
 	font-weight: 550;
 }
 section table{
-	border: solid 3px #F2F2F2;
+	border: solid 3px #EFE6DB;
 	border-collapse: collapse;
 	padding: 0px;
 }
@@ -15,7 +15,7 @@ section table{
 	/*idth: 100%;*/
 }
 section tr{
-	border: solid 3px #F2F2F2;
+
 	padding: 0px;
 }
 section td{
@@ -28,8 +28,8 @@ section td{
 .article_1{
 	float: left;
 	width: 630px;
-	height: 220px;
-	background: #F2F2F2;
+	height: 180px;
+	background: #EFE6DB;
 }
 .article_1 a{
 	float: left;
@@ -37,8 +37,8 @@ section td{
 .article_2{
 	float: right;
 	width: 630px;
-	height: 220px;
-	background: #F2F2F2;
+	height: 180px;
+	background: #EFE6DB;
 }
 .article_1 img{
 	float: left;
@@ -53,7 +53,7 @@ table{
 	table-layout: fixed;
 }
 td{
-	width: 80px;
+	width: 79.5px;
 	height: 30px;
 	word-wrap: break-word;
 }
@@ -64,21 +64,29 @@ td{
 }
 .table_A{
 	width: 100px;
-	background: #F2F2F2;
+	background: #EFE6DB;
+	font-size: 20px;
+	text-shadow:0px 1px 0px #2f6627;
+	text-align: left;
 }
 .td_B{
 	width: 57.2%;
 }
 .td_width{
 	width: 20%;
-	
+
 }
 
 /* 지역 버튼 css */
 .zone{
 	background-color: white;
+	border-radius:28px;
 	border:0;
 	outline: 0;
-	border-radius: 10px;
+	font-size:17px;
+	cursor:pointer;
+	padding:8px 15px;
+	text-shadow:0px 1px 0px #2f6627;
 	cursor: pointer;
+	font-color:white;
 }
