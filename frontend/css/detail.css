@@ -4,7 +4,8 @@
 
 .head_title {
     float: left;
-    font-size: 34px;
+    font-size: 30px;
+    font-weight: bolder;
 }
 
 .call {
@@ -24,7 +25,6 @@
     width: 700px;
     height: 547px;
     float: left;
-    background: #f2f2f2;
     font-size: 24px;
 }
 
@@ -47,3 +47,16 @@
     height: 20px;
     padding-top: 10px;
 }
+#head_area_money{
+    font-size: 20px;
+
+    color:#1338be;
+}
+p{
+    font-size: 25px;
+}
+#call_id td{
+    height: 30px;
+}
+
+

@@ -3,12 +3,12 @@ var start_area = 0; // 시작가격
 var end_area = 1;   // 마지막가격
 var area_price = 1; // 평단가
 var i = 0;
-var arr_use = [' 논 ', ' 밭 ', '과수원', '기타'];
+var arr_use = ['논', '밭', '과수원', '기타'];
 var e;
-var button_click_rgb = "rgb(215, 159, 89)";     // 지역 버튼 클릭 시 색상 (rgb 값으로 넣어주세요)
+var button_click_rgb = "rgb(242, 242, 242)";     // 지역 버튼 클릭 시 색상 (rgb 값으로 넣어주세요)
 
 function table_create() {//테이블 생성
-    document.write("<table style=\"border-bottom: none;\"><tr><td class=" + "table_A>" + "지역" + "</td>");
+    document.write("<table class='big_table' style=\"border-bottom: none;\"><tr><td class=table_A>" + "지역" + "</td>");
     for (; i < arr_zone.length; i++) {
         if ((i % 13 == 0) && !(i == 0)) {
             document.write("<tr></tr><td class=table_A></td>");
@@ -22,17 +22,17 @@ function table_create() {//테이블 생성
     }
     document.write("</tr>");
 
-    document.write("<table style=\"border-bottom: none;\"><tr><td class=table_A>" + "면적" + " m<sup>2</sup></td>");
+    document.write("<table class='big_table' style=\"border-bottom: none;\"><tr><td class=table_A>" + "면적" + " m<sup>2</sup></td><td class=empty_input></td>");
     document.write("<td><input class=input id=min_area type=number onchange='text_change(min_area)'></td>" + "<td>~</td>" + "<td><input class=input id=max_area type=number onchange='text_change(max_area)'></td>");
     document.write("<td class=td_B></td>");
     document.write("</tr>");
 
-    document.write("<table style=\"border-bottom: none;\"><tr><td class=table_A>" + "리스료(연)" + "</td>");
+    document.write("<table class='big_table'  style=\"border-bottom: none;\"><tr><td class=table_A>" + "리스료(연)" + "</td><td class=empty_input></td>");
     document.write("<td><input class=input id=min_money placeholder='만원' type=number onchange='text_change(min_money)'></td>" + "<td>~</td>" + "<td><input class=input id=max_money placeholder='만원' type=number onchange='text_change(max_money)'></td>");
     document.write("<td class=td_B></td>");
     document.write("</tr>");
 
-    document.write("<table><tr><td class=table_A>" + "용도" + "</td>");
+    document.write("<table class='big_table'><tr><td class=table_A>" + "용도" + "</td>");
     for (i = 0; i < arr_use.length; i++) {
         document.write("<td><input class='zone' id=arr_use" + i + " type='button' onclick='button_click_arr_use(" + i + ")' value=" + arr_use[i] + "></td>");
     }

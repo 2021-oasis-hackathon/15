@@ -23,25 +23,26 @@ function findLandByAddress(landForm) {
 
             for (var i = 0; i < array1.length; i++) {
                 var div = document.createElement('div');
-
+                var picture = '/img/LandPicture/' + array1[i]["picture"]+'.jpeg';
+                console.log(picture);
                 var str = "<article style=\" cursor: pointer;\" onclick=\"location.href='detail.html?id=" + array1[i]["id"] + "';\" class='article_1' id =" + array1[i]["id"] + ">\n" +
-                    "        <img src='https://via.placeholder.com/155x155'>\n" +
+                    "        <img src="+picture+" width='155px' height='155px'/>\n" +
                     "        <table>\n" +
                     "            <tr>\n" +
                     "                <td class='td_width'>주소</td>\n" +
-                    "                <td>" + array1[i]["address"] + "</td>\n" +
+                    "                <td class='td_width2'>" + array1[i]["address"] + "</td>\n" +
                     "            </tr>\n" +
                     "            <tr>\n" +
                     "                <td class='td_width'>면적</td>\n" +
-                    "                <td>" + array1[i]["area_size"] + " m<sup>2</sup></td>\n" +
+                    "                <td class='td_width2'>" + array1[i]["area_size"] + " m<sup>2</sup></td>\n" +
                     "            </tr>\n" +
                     "            <tr>\n" +
                     "                <td class='td_width'>연리스료</td>\n" +
-                    "                <td>" + array1[i]["money"] + " 만원</td>\n" +
+                    "                <td class='td_width2'>" + array1[i]["money"] + " 만원</td>\n" +
                     "            </tr>\n" +
                     "            <tr>\n" +
-                    "                <td class'td_width'>작물</td>\n" +
-                    "                <td>" + array1[i]["crops"] + "</td>\n" +
+                    "                <td class='td_width'>작물</td>\n" +
+                    "                <td class='td_width2'>" + array1[i]["crops"] + "</td>\n" +
                     "            </tr>\n" +
                     "        </table>\n" +
                     "    </article>";
@@ -66,17 +67,16 @@ function findLandById(id) {
 
             var str = "";
             if (data["tractor"] != undefined)
-                str += " 트랙터 " + data["tractor"] + ",";
+                str += "트랙터 " + data["tractor"] + " / 2019년식\n";
             if (data["combine"] != undefined)
-                str += " 콤바인 " + data["combine"] + ",";
+                str += "콤바인 " + data["combine"] + " / 2017년식\n";
             if (data["rice_planting"] != undefined)
-                str += " 이앙기 " + data["rice_planting"] + ",";
+                str += "이앙기 " + data["rice_planting"] + " / 2020년식\n";
             if (data["fluid_fertilizer"] != undefined)
-                str += " 액상비료살포기 " + data["fluid_fertilizer"] + ",";
+                str += "액상비료살포기 " + data["fluid_fertilizer"] + " / 2018년식\n";
             if (data["tree_crush"] != undefined)
-                str += " 나무분쇄기 " + data["tree_crush"] + ",";
-            if (str.charAt(str.length - 1) == ",")
-                str = str.substring(0, str.length - 1);
+                str += "나무분쇄기 " + data["tree_crush"] + " / 2018년식\n";
+            str = str.substring(0, str.length - 1);
 
             document.getElementById("head_address").innerText = data["address"];
             document.getElementById("head_money").innerText = "연 리스료 : " + data["money"] + " 만원";
@@ -86,7 +86,7 @@ function findLandById(id) {
             document.getElementById("land_type").innerText = "용도 : " + data["type"];
             document.getElementById("land_crops").innerText = "재배작물 : " + data["crops"];
             document.getElementById("land_incentive").innerText = "농사 인센티브 : " + data["incentive"] + " %";
-            document.getElementById("land_machine").innerText = "보유 농기계 : " + str;
+            document.getElementById("land_machine").innerText = str;
 
             createMap(data["y"], data["x"]);
         }

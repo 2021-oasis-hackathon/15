@@ -9,7 +9,7 @@ p {
 }
 
 section table {
-    border: solid 3px #f5e6c3;
+    border: solid 3px #EFE6DB;
     border-collapse: collapse;
     padding: 0px;
 }
@@ -27,13 +27,10 @@ section td {
     padding: 5px;
 }
 
-.article_1 p {
-    text-align: center;
-}
 
 .article_1 {
     float: left;
-    width: 60%;
+    width: 800px;
 
 }
 
@@ -43,12 +40,10 @@ section td {
 
 .article_2 {
     float: right;
-    width: 36%;
+    width: 34%;
+    padding-left:13px;
 }
 
-table {
-    table-layout: fixed;
-}
 
 td {
     width: 79.5px;
@@ -63,31 +58,21 @@ td {
 
 .table_A {
     width: 100px;
-    background: #f5e6c3;
+    background: #EFE6DB;
     font-size: 20px;
-    text-shadow: 0px 1px 0px #2f6627;
+    text-shadow: 0px 1px 0px #EFE6DB;
     text-align: left;
+    font-family: KoPubWorld_Dotum_Medium;
+    font-weight: bolder;
 }
 
 .td_B {
-    width: 57.2%;
-}
-
-/* 지역 버튼 css */
-.zone {
-    background-color: white;
-    border-radius: 28px;
-    border: 0;
-    outline: 0;
-    font-size: 17px;
-    cursor: pointer;
-    padding: 8px 15px;
-    text-shadow: 0px 1px 0px #2f6627;
-    cursor: pointer;
+    width:54.2%;
 }
 
 .article_1 img {
-    margin: 10px;
+    margin: 1px;
+    margin-right: 14px;
     float: left;
 }
 
@@ -95,31 +80,54 @@ td {
     width: 300px;
 }
 
+.article_1 p {
+    text-align: center;
+    font-family: KoPubWorld_Dotum_Bold;
+    font-size: 30px;
+    margin-bottom: 0;
+}
+
+.article_2 p {
+    text-align: center;
+    font-family: KoPubWorld_Dotum_Bold;
+    font-size: 30px;
+    margin-bottom: 0;
+}
+
 li {
     list-style: none
 }
 
 .NEWS_table_1 {
+    margin-top: 20px;
+    margin-left: 20px;
     text-align: left;
-    width: 610px;
-    font-size: 24px;
+    width: 796px;
+    font-size: 26px;
+    font-family: KoPubWorld_Dotum_Medium;
 }
 
 .NEWS_table_2 {
+    margin-top:10px;
     text-align: right;
-    width: 750px;
+    width: 796px;
     font-size: 20px;
+    font-family: KoPubWorld_Dotum_Medium;
 }
 
 .NEWS_table_3 {
     text-align: right;
-    width: 750px;
+    width: 796px;
     font-size: 20px;
+    font-family: KoPubWorld_Dotum_Medium;
+    margin-bottom: 10px;
 }
 
 .NEWS_table_4 {
     text-align: left;
-    width: 750px;
+    width: 800px;
+    font-family: KoPubWorld_Dotum_Medium;
+    font-size: 19px;
 }
 
 #plus {
@@ -128,9 +136,32 @@ li {
 
 .notice {
     text-align: left;
-    font-size: 20px
+    font-size: 19px;
+    margin-bottom:10px;
+    margin-top:10px;
 }
 
 .article_2 table {
     margin: 10px;
+}
+
+/* 지역 버튼 css */
+.zone {
+    background-color: white;
+    border-radius: 28px;
+    border: 0;
+    outline: 0;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 8px 15px;
+    text-shadow: 0px 1px 0px #2f6627;
+    cursor: pointer;
+    font-family: KoPubWorld_Dotum_Medium;
+}
+.big_table{
+    width:1280px;
+}
+
+.empty_input{
+    width:3%;
 }
