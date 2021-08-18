@@ -7,3 +7,31 @@ body {
 .popup {
     padding: 10px;
 }
+
+#form {
+    border: 3px solid #CC9966;
+    border-radius: 20px;
+    position: relative;
+    padding:10px;
+}
+
+p {
+    font-family: KoPubWorld_Dotum_Bold;
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+#bookingButton {
+    border: none;
+    border: 0;
+    padding: 0;
+    width: 100px;
+    height: 50px;
+    background-color: white;
+    cursor: pointer;
+    display: inline-block;
+    position: absolute;
+    left: 80%;
+    top: 75%;
+    transform: translate(-50%, -50%);
+}

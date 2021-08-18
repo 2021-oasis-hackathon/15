@@ -130,8 +130,7 @@ function bookingOpen() {
 
     window.open('date.html?id=' + searchParam('id'),
         'PopupWin', 'height=300, width=500, left=' + popupX + ', top=' + popupY + ', screenX=' + popupX + ', screenY= ' + popupY
-    )
-    ;
+    );
 }
 
 

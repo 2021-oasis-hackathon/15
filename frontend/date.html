@@ -15,7 +15,8 @@
     </style>
 </head>
 <body>
-<center><h1>예약하실 날짜는 ?</h1></center>
+<center><p>예약하실 날짜는 ?</p></center>
+<div id="form">
     <div class="popup">
         <input type='date' id="booking_date" name="booking_date"/>
     </div>
@@ -26,7 +27,10 @@
         <input type="tel" id='phone' placeholder="전화번호를 입력해주세요"/>
     </div>
     <div class="popup">
-        <button onclick="jbSubmit()">예약하기</button>
+        <a></a>
+
+        <button type='buuton' id="bookingButton" onclick="jbSubmit()"><img src="/img/예약하기버튼.png" width='100px' height='50px'/></button>
     </div>
+</div>
 </body>
 </html>
