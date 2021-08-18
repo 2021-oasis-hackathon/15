@@ -94,6 +94,31 @@ function button_click_search() {
     var p_max_money = document.getElementById("p_max_money");
     var p_type = document.getElementById("p_type");
 
+    if (p_address.textContent === "") {
+        for (var i = 0; i < arr_zone.length; i++) {
+            if (p_address.innerText === "") {
+                p_address.innerText = arr_zone[i];
+
+            } else {
+                p_address.innerText = p_address.textContent + "," + arr_zone[i];
+            }
+        }
+    }
+
+    if (p_min_area.textContent === "") {
+        p_min_area.innerText = 0;
+    }
+    if (p_max_area.textContent === "") {
+        p_max_area.innerText = 10000000;
+    }
+    if (p_min_money.textContent === "") {
+        p_min_money.innerText = 0;
+    }
+    if (p_max_money.textContent === "") {
+        p_max_money.innerText = 10000000;
+    }
+    p_type.innerText = '논';
+
     window.location.href = 'select.html?p_address=' + p_address.textContent
         + '&p_min_area=' + p_min_area.textContent
         + '&p_max_area=' + p_max_area.textContent
